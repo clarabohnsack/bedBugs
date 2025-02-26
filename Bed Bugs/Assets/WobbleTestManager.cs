@@ -10,7 +10,7 @@ public class WobbleTestManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        keyboard = keyboard.current;
+        keyboard = Keyboard.current;
     }
 
     // Update is called once per frame

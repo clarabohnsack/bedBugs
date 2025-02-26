@@ -1,0 +1,54 @@
+{
+    "name": "PlayerActions",
+    "maps": [
+        {
+            "name": "Main",
+            "id": "1d752d35-2019-4359-a34a-b4dab5bc114d",
+            "actions": [
+                {
+                    "name": "Quit",
+                    "type": "Button",
+                    "id": "d4615f1c-52c6-4ade-be6d-4399f652aa25",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Confirm",
+                    "type": "Button",
+                    "id": "0a76f84f-271f-444c-9c32-510ebe150865",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "d1a3adcb-13bf-4966-a70b-95aa0e1766b5",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Quit",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0191f869-6e41-4728-be60-213c0ba12d34",
+                    "path": "<Keyboard>/enter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Confirm",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
