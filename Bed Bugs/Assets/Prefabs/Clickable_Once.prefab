@@ -130,16 +130,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 6018119510897950417}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a53727db1bb45f44984b73b48742eb9, type: 3}
+  m_Script: {fileID: 11500000, guid: ae3135f9b7e675248be2aba29ae60943, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 1
+  type: 0
   gameController: {fileID: 0}
-  soundEffects:
-  - {fileID: 1114560203557115404}
-  textures:
-  - {fileID: 0}
-  - {fileID: 0}
+  soundEffects: []
+  textures: []
+  activatedObject: {fileID: 0}
+  deactivatedObject: {fileID: 0}
+  soundAtStart: 0
+  loopTextures: 1
 --- !u!50 &6005636433812963969
 Rigidbody2D:
   serializedVersion: 4

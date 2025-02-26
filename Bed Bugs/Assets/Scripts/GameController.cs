@@ -7,27 +7,24 @@ using TMPro;
 
 public class GameController : MonoBehaviour
 {
-    [Header("TESTING")]
-    public int testingScene = 0;
-
     [Header("GAME REFERENCES")]
-    public GameObject soundController;
+    //public GameObject soundController;
     public SpriteRenderer background;
-    public SpriteRenderer loading;
-    public GameObject[] scenes;
+    //public SpriteRenderer loading;
+    //public GameObject[] scenes;
 
     [Header("UI REFERENCES")]
-    public GameObject nextButton;
-    public TextMeshProUGUI topText;
-    public TextMeshProUGUI bottomText;
+    //public GameObject nextButton;
+    //public TextMeshProUGUI topText;
+    //public TextMeshProUGUI bottomText;
 
     [Header("NARRATIVE")]
-    public string[] topStrings;
-    public string[] bottomStrings;
-    public int[] interactionsRequired;
+    //public string[] topStrings;
+    //public string[] bottomStrings;
+    //public int[] interactionsRequired;
 
     [Header("AUDIO")]
-    public AudioSource dingSound;
+    //public AudioSource dingSound;
 
     [Header("CONTROL")]
     private PlayerActions playerActions;
@@ -59,7 +56,7 @@ public class GameController : MonoBehaviour
         scale.y = worldScreenHeight / spriteSize.y;
 
         background.gameObject.transform.localScale = scale;
-        loading.gameObject.transform.localScale = scale;
+        //loading.gameObject.transform.localScale = scale;
     }
 
 
@@ -70,19 +67,19 @@ public class GameController : MonoBehaviour
         currentScene = 0;
         currentInteractions = 0;
 
-        if (testingScene != 0) currentScene = testingScene;
+        //if (testingScene != 0) currentScene = testingScene;
 
-        scenes[currentScene].SetActive(true);
-        nextButton.SetActive(false);
+        //scenes[currentScene].SetActive(true);
+        //nextButton.SetActive(false);
 
-        topText.text = topStrings[currentScene];
-        bottomText.text = bottomStrings[currentScene];
+        //topText.text = topStrings[currentScene];
+        //bottomText.text = bottomStrings[currentScene];
     }
 
 
     public void checkInteractions()
     {
-        currentInteractions += 1;
+        /*currentInteractions += 1;
 
         if (currentInteractions == interactionsRequired[currentScene])
         {
@@ -92,19 +89,19 @@ public class GameController : MonoBehaviour
 
             topText.gameObject.GetComponent<Animation>().Stop();
             bottomText.gameObject.GetComponent<Animation>().Stop();
-        }
+        }*/
     }
 
 
     public void nextClick(Animation anim)
     {
-        anim.Play("FadeInOutAnim");
+        //anim.Play("FadeInOutAnim");
     }
 
 
     public void nextScene()
     {
-        currentScene += 1;
+        /*currentScene += 1;
 
         if (currentScene < scenes.Length)
         {
@@ -130,12 +127,12 @@ public class GameController : MonoBehaviour
         else
         {
             goToMenu();
-        }
+        }*/
     }
 
 
     private void goToMenu()
     {
-        Camera.main.transform.GetChild(1).GetComponent<Animation>().Play("FadeInAnim");
+        //Camera.main.transform.GetChild(1).GetComponent<Animation>().Play("FadeInAnim");
     }
 }
