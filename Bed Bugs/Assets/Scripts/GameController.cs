@@ -10,18 +10,16 @@ public class GameController : MonoBehaviour
     [Header("GAME REFERENCES")]
     //public GameObject soundController;
     public SpriteRenderer background;
-    //public SpriteRenderer loading;
-    //public GameObject[] scenes;
+    public SpriteRenderer transition;
+   public GameObject[] scenes;
 
     [Header("UI REFERENCES")]
-    //public GameObject nextButton;
-    //public TextMeshProUGUI topText;
-    //public TextMeshProUGUI bottomText;
+    public GameObject nextButton;
+    public TextMeshProUGUI bottomText;
 
     [Header("NARRATIVE")]
-    //public string[] topStrings;
-    //public string[] bottomStrings;
-    //public int[] interactionsRequired;
+    public string[] texts;
+    public int[] interactionsRequired;
 
     [Header("AUDIO")]
     //public AudioSource dingSound;
@@ -56,7 +54,14 @@ public class GameController : MonoBehaviour
         scale.y = worldScreenHeight / spriteSize.y;
 
         background.gameObject.transform.localScale = scale;
-        //loading.gameObject.transform.localScale = scale;
+
+
+        spriteSize = transition.sprite.bounds.size;
+        scale = Vector3.one;
+        scale.x = worldScreenWidth / spriteSize.x;
+        scale.y = worldScreenHeight / spriteSize.y;
+
+        transition.gameObject.transform.localScale = scale;
     }
 
 
