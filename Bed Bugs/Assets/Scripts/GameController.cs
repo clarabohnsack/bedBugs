@@ -9,16 +9,11 @@ public class GameController : MonoBehaviour
 {
     [Header("GAME REFERENCES")]
     //public GameObject soundController;
-    public SpriteRenderer background;
-    public SpriteRenderer transition;
-   public GameObject[] scenes;
-
-    [Header("UI REFERENCES")]
-    public GameObject nextButton;
-    public TextMeshProUGUI bottomText;
+    //public SpriteRenderer background;
+    //public SpriteRenderer transition;
+    public GameObject[] scenes;
 
     [Header("NARRATIVE")]
-    public string[] texts;
     public int[] interactionsRequired;
 
     [Header("AUDIO")]
@@ -48,7 +43,7 @@ public class GameController : MonoBehaviour
         float worldScreenHeight = Camera.main.orthographicSize * 2f;
         float worldScreenWidth = worldScreenHeight / Screen.height * Screen.width;
 
-        Vector3 spriteSize = background.sprite.bounds.size;
+        /*Vector3 spriteSize = background.sprite.bounds.size;
         Vector3 scale = Vector3.one;
         scale.x = worldScreenWidth / spriteSize.x;
         scale.y = worldScreenHeight / spriteSize.y;
@@ -61,7 +56,7 @@ public class GameController : MonoBehaviour
         scale.x = worldScreenWidth / spriteSize.x;
         scale.y = worldScreenHeight / spriteSize.y;
 
-        transition.gameObject.transform.localScale = scale;
+        transition.gameObject.transform.localScale = scale;*/
     }
 
 
@@ -84,17 +79,25 @@ public class GameController : MonoBehaviour
 
     public void checkInteractions()
     {
-        /*currentInteractions += 1;
+        currentInteractions += 1;
 
         if (currentInteractions == interactionsRequired[currentScene])
         {
-            soundController.GetComponent<SoundController>().checkCompleteSound(currentScene);
-            nextButton.SetActive(true);
-            dingSound.Play();
+            currentScene += 1;
 
-            topText.gameObject.GetComponent<Animation>().Stop();
-            bottomText.gameObject.GetComponent<Animation>().Stop();
-        }*/
+            if (currentScene < scenes.Length)
+            {
+                currentInteractions = 0;
+
+                scenes[currentScene].SetActive(true);
+                scenes[currentScene - 1].SetActive(false);
+            }
+
+            else
+            {
+                SceneManager.LoadScene("Menu");
+            }
+        }
     }
 
 
@@ -139,5 +142,10 @@ public class GameController : MonoBehaviour
     private void goToMenu()
     {
         //Camera.main.transform.GetChild(1).GetComponent<Animation>().Play("FadeInAnim");
+    }
+
+    public int getCurrentScene()
+    {
+        return currentScene;
     }
 }

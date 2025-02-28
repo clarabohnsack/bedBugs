@@ -291,8 +291,8 @@ RectTransform:
   - {fileID: 2627240}
   m_Father: {fileID: 1363552272}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.67260414, y: 0.061222225}
-  m_AnchorMax: {x: 0.9346875, y: 0.24837038}
+  m_AnchorMin: {x: 0.55, y: 0.05}
+  m_AnchorMax: {x: 0.8, y: 0.25}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -478,7 +478,7 @@ GameObject:
   - component: {fileID: 213899696}
   - component: {fileID: 213899695}
   m_Layer: 0
-  m_Name: Start
+  m_Name: Play
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -499,8 +499,8 @@ RectTransform:
   - {fileID: 630790925}
   m_Father: {fileID: 1363552272}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.054875005, y: 0.061222225}
-  m_AnchorMax: {x: 0.31981254, y: 0.24837038}
+  m_AnchorMin: {x: 0.2, y: 0.05}
+  m_AnchorMax: {x: 0.45, y: 0.25}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -655,7 +655,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Start
+  m_text: Play
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8991257cd77b00d45a548a2ce2f7f534, type: 2}
   m_sharedMaterial: {fileID: 3270636092228143921, guid: 8991257cd77b00d45a548a2ce2f7f534, type: 2}
@@ -1033,7 +1033,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1707385918
 RectTransform:
   m_ObjectHideFlags: 0

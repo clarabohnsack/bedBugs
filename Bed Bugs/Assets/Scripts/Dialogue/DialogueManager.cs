@@ -8,7 +8,8 @@ public class DialogueManager : MonoBehaviour
 {
 
     private Queue<string> sentences;
-    
+    private Queue<string> names;
+
     public TMP_Text nameText;
     public TMP_Text dialogueText;
     public Animator animator;
@@ -17,19 +18,26 @@ public class DialogueManager : MonoBehaviour
     void Start()
     {
         sentences = new Queue<string>();
+        names = new Queue<string>();
     }
 
     public void StartDialogue(Dialogue dialogue)
     {
         
         animator.SetBool("isOpen", true);
-        nameText.text = dialogue.name;
+        nameText.text = dialogue.names[gameObject.GetComponent<GameController>().getCurrentScene()];
 
         sentences.Clear();
+        names.Clear();
 
-        foreach(string sentence in dialogue.sentences)
+        foreach (string sentence in dialogue.sentences)
         {
             sentences.Enqueue(sentence);
+        }
+
+        foreach (string name in dialogue.names)
+        {
+            names.Enqueue(name);
         }
 
         DisplayNextSentence();
@@ -43,7 +51,9 @@ public class DialogueManager : MonoBehaviour
             return;
         }
         string sentence = sentences.Dequeue();
+        string name = names.Dequeue();
         StopAllCoroutines();
+        nameText.text = name;
         StartCoroutine(TypeSentence(sentence));
 
     }
