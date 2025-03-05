@@ -9,6 +9,24 @@ EditorBuildSettings:
     path: Assets/Scenes/Menu.unity
     guid: 6b4c056696623234186bc88a79e4b01a
   - enabled: 1
-    path: Assets/Scenes/Main.unity
+    path: Assets/Scenes/Narrator.unity
+    guid: 1c6b093aa2de9bf479b209d46819579d
+  - enabled: 1
+    path: Assets/Scenes/Sleepover.unity
     guid: 3d1c314eceed47749ac63d0844bb549f
+  - enabled: 1
+    path: Assets/Scenes/Medieval.unity
+    guid: f4caa715666fcd5459dc3505bf90771c
+  - enabled: 1
+    path: Assets/Scenes/Space.unity
+    guid: b78766cce6f435e42aa0c65d8dabb482
+  - enabled: 1
+    path: Assets/Scenes/Western.unity
+    guid: a55a95aef4eea87429166928eb536f2e
+  - enabled: 1
+    path: Assets/Scenes/Pirate.unity
+    guid: 05b6f42a4b1f17b4596ae1952752f765
+  - enabled: 1
+    path: Assets/Scenes/Asleep.unity
+    guid: 067aefb1cc3241b4c801535ffa71c1a0
   m_configObjects: {}

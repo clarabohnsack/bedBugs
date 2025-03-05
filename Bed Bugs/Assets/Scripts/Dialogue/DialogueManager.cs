@@ -25,7 +25,7 @@ public class DialogueManager : MonoBehaviour
     {
         
         animator.SetBool("isOpen", true);
-        nameText.text = dialogue.names[gameObject.GetComponent<GameController>().getCurrentScene()];
+
 
         sentences.Clear();
         names.Clear();

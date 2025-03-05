@@ -4,148 +4,128 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
+using Unity.VisualScripting;
 
 public class GameController : MonoBehaviour
 {
-    [Header("GAME REFERENCES")]
-    //public GameObject soundController;
-    //public SpriteRenderer background;
-    //public SpriteRenderer transition;
-    public GameObject[] scenes;
+    [Header("SCENES")]
+    public GameObject sleepoverScene;
+    public GameObject medievalScene;
+    public GameObject spaceScene;
+    public GameObject westernScene;
+    public GameObject pirateScene;
+
+
+    [Header("BACKGROUND")]
+    public SpriteRenderer background;
+    public Sprite[] backgroundOptions;
+
+
+    [Header("UI")]
+    public float dialogueSpeed = 0.05f;
+    public TMP_Text dialogueText;
+    public TMP_Text nameText;
+    public Image characterPhoto;
+    public Sprite[] characterOptions;
+    public Image transition;
+
 
     [Header("NARRATIVE")]
-    public int[] interactionsRequired;
+    public string[] dialogueList;
+    public string[] nameList;
 
-    [Header("AUDIO")]
-    //public AudioSource dingSound;
 
     [Header("CONTROL")]
-    private PlayerActions playerActions;
-    private int currentScene = 0;
-    private int currentInteractions = 0;
-
-
-    private void OnEnable()
-    {
-        playerActions.Enable();
-    }
-
-    private void OnDisable()
-    {
-        playerActions.Disable();
-    }
+    private string currentScene = "SLEEPOVER"; // 0: SLEEPOVER, 1: MEDIEVAL, 2: SPACE, 3: WESTERN, 4: PIRATE
+    private int currentDialogue = 0;
 
 
     void Awake()
     {
-        playerActions = new PlayerActions();
-
         float worldScreenHeight = Camera.main.orthographicSize * 2f;
         float worldScreenWidth = worldScreenHeight / Screen.height * Screen.width;
 
-        /*Vector3 spriteSize = background.sprite.bounds.size;
+        Vector3 spriteSize = background.sprite.bounds.size;
         Vector3 scale = Vector3.one;
         scale.x = worldScreenWidth / spriteSize.x;
         scale.y = worldScreenHeight / spriteSize.y;
 
         background.gameObject.transform.localScale = scale;
-
-
-        spriteSize = transition.sprite.bounds.size;
-        scale = Vector3.one;
-        scale.x = worldScreenWidth / spriteSize.x;
-        scale.y = worldScreenHeight / spriteSize.y;
-
-        transition.gameObject.transform.localScale = scale;*/
     }
 
 
     void Start()
     {
-        playerActions.Main.Quit.performed += _ => goToMenu();
+        currentScene = "SLEEPOVER";
+        showScene();
 
-        currentScene = 0;
-        currentInteractions = 0;
-
-        //if (testingScene != 0) currentScene = testingScene;
-
-        //scenes[currentScene].SetActive(true);
-        //nextButton.SetActive(false);
-
-        //topText.text = topStrings[currentScene];
-        //bottomText.text = bottomStrings[currentScene];
+        currentDialogue = 0;
+        nameText.text = nameList[currentDialogue];
+        StartCoroutine(TypeSentence(dialogueList[currentDialogue]));
     }
 
 
-    public void checkInteractions()
+    private void showScene()
     {
-        currentInteractions += 1;
+        sleepoverScene.SetActive(false);
+        medievalScene.SetActive(false);
+        spaceScene.SetActive(false);
+        westernScene.SetActive(false);
+        pirateScene.SetActive(false);
 
-        if (currentInteractions == interactionsRequired[currentScene])
+        int backgroundNumber = 0;
+
+        switch (currentScene)
         {
-            currentScene += 1;
+            case "SLEEPOVER":
+                sleepoverScene.SetActive(true);
+                backgroundNumber = 0;
+                break;
 
-            if (currentScene < scenes.Length)
-            {
-                currentInteractions = 0;
+            case "MEDIEVAL":
+                medievalScene.SetActive(true);
+                backgroundNumber = 1;
+                break;
 
-                scenes[currentScene].SetActive(true);
-                scenes[currentScene - 1].SetActive(false);
-            }
+            case "SPACE":
+                spaceScene.SetActive(true);
+                backgroundNumber = 2;
+                break;
 
-            else
-            {
-                SceneManager.LoadScene("Menu");
-            }
-        }
-    }
+            case "WESTERN":
+                westernScene.SetActive(true);
+                backgroundNumber = 3;
+                break;
 
-
-    public void nextClick(Animation anim)
-    {
-        //anim.Play("FadeInOutAnim");
-    }
-
-
-    public void nextScene()
-    {
-        /*currentScene += 1;
-
-        if (currentScene < scenes.Length)
-        {
-            currentInteractions = 0;
-            if (interactionsRequired[currentScene] > 0) nextButton.SetActive(false);
-
-            float randNum = Random.Range(-1.0f, 1.0f);
-            background.flipX = (randNum > 0f);
-            background.flipY = !background.flipY;
-
-            scenes[currentScene].SetActive(true);
-            scenes[currentScene - 1].SetActive(false);
-
-            topText.text = topStrings[currentScene];
-            bottomText.text = bottomStrings[currentScene];
-
-            topText.gameObject.GetComponent<Animation>().Play();
-            bottomText.gameObject.GetComponent<Animation>().Play();
-
-            soundController.GetComponent<SoundController>().checkBackgroundSound(currentScene);
+            case "PIRATE":
+                pirateScene.SetActive(true);
+                backgroundNumber = 4;
+                break;
         }
 
-        else
+        background.sprite = backgroundOptions[backgroundNumber];
+    }
+
+
+    public void Next()
+    {
+        currentScene = "SLEEPOVER";
+        showScene();
+
+        currentDialogue += 1;
+        nameText.text = nameList[currentDialogue];
+        StartCoroutine(TypeSentence(dialogueList[currentDialogue]));
+    }
+
+
+    IEnumerator TypeSentence(string sentence)
+    {
+        dialogueText.text = "";
+
+        foreach (char letter in sentence.ToCharArray())
         {
-            goToMenu();
-        }*/
-    }
-
-
-    private void goToMenu()
-    {
-        //Camera.main.transform.GetChild(1).GetComponent<Animation>().Play("FadeInAnim");
-    }
-
-    public int getCurrentScene()
-    {
-        return currentScene;
+            dialogueText.text += letter;
+            yield return new WaitForSeconds(dialogueSpeed);
+        }
     }
 }

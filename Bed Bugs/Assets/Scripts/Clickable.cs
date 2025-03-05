@@ -57,7 +57,7 @@ public class Clickable : MonoBehaviour
         {
             locked = true;
             anim.Stop();
-            gameController.GetComponent<GameController>().checkInteractions();
+
             sr.sprite = textures[1];
             // if (!soundAtStart)  soundEffects[0].Play();
             transform.localScale = Vector3.one;
@@ -68,7 +68,7 @@ public class Clickable : MonoBehaviour
 
         else if (type == 2 && !locked)
         {
-            gameController.GetComponent<GameController>().checkInteractions();
+
 
             /*soundEffects[currentTex].Stop();
 
@@ -97,7 +97,7 @@ public class Clickable : MonoBehaviour
         {
             locked = true;
             anim.Stop();
-            gameController.GetComponent<GameController>().checkInteractions();
+
             sr.color = Color.clear;
             /*if (!soundAtStart) soundEffects[0].Play();
             transform.localScale = Vector3.one;
@@ -112,7 +112,7 @@ public class Clickable : MonoBehaviour
             cannonballs[currentInteractions].bodyType = RigidbodyType2D.Dynamic;
             cannonballs[currentInteractions].AddForce(new Vector2(350f, 250f), ForceMode2D.Force);
             currentInteractions += 1;
-            gameController.GetComponent<GameController>().checkInteractions();
+
             if (currentInteractions < 3) StartCoroutine(MoveOctopus());
         }
 
@@ -125,7 +125,7 @@ public class Clickable : MonoBehaviour
             bang.Play("Bang");
             sr.sprite = textures[1];
             transform.localScale = Vector3.one;
-            gameController.GetComponent<GameController>().checkInteractions();
+
 
             if (activatedObject != null)
             {

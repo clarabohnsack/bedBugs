@@ -74,7 +74,7 @@ public class Draggable : MonoBehaviour
             transform.position = currentShadow.transform.position;
 
             currentShadow.GetComponent<Collider2D>().enabled = false;
-            gameController.GetComponent<GameController>().checkInteractions();
+
         }
 
         else
