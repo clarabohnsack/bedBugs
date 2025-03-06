@@ -5,14 +5,27 @@ using UnityEngine.SceneManagement;
 
 public class SceneChanger : MonoBehaviour
 {
+    public Animator transition;
+
+    void Start()
+    {
+        transition.Play("FadeOut");
+    }
+
     public void StartGame()
     {
-        SceneManager.LoadScene("Main");
+        StartCoroutine(LoadGame());
+    }
+
+    IEnumerator LoadGame()
+    {
+        transition.Play("FadeIn");
+        yield return new WaitForSeconds(1.5f);
+        SceneManager.LoadScene("Narrator 1");
     }
 
     public void QuitGame()
     {
         Application.Quit();
-        Debug.Log("Quit");
     }
 }

@@ -64,6 +64,8 @@ public class Clickable : MonoBehaviour
 
             if (activatedObject != null) activatedObject.SetActive(true);
             if (deactivatedObject != null) deactivatedObject.SetActive(false);
+
+            gameController.GetComponent<GameController>().Next(true);
         }
 
         else if (type == 2 && !locked)
@@ -104,6 +106,7 @@ public class Clickable : MonoBehaviour
 
             if (activatedObject != null) activatedObject.SetActive(true);
             if (deactivatedObject != null) deactivatedObject.SetActive(false);*/
+            gameController.GetComponent<GameController>().Next(true);
         }
 
         else if (type == 4 && !locked)
@@ -113,7 +116,7 @@ public class Clickable : MonoBehaviour
             cannonballs[currentInteractions].AddForce(new Vector2(350f, 250f), ForceMode2D.Force);
             currentInteractions += 1;
 
-            if (currentInteractions < 3) StartCoroutine(MoveOctopus());
+            if (currentInteractions <= 3) StartCoroutine(MoveOctopus());
         }
 
         else if (type == 5 && !locked)
@@ -125,6 +128,8 @@ public class Clickable : MonoBehaviour
             bang.Play("Bang");
             sr.sprite = textures[1];
             transform.localScale = Vector3.one;
+
+            gameController.GetComponent<GameController>().Next(true);
 
 
             if (activatedObject != null)
@@ -164,5 +169,7 @@ public class Clickable : MonoBehaviour
 
         locked = false;
         Destroy(cannonballs[currentInteractions - 1].gameObject);
+
+        gameController.GetComponent<GameController>().Next(true);
     }
 }

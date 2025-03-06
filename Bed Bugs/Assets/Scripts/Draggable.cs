@@ -5,7 +5,7 @@ using UnityEngine;
 public class Draggable : MonoBehaviour
 {
     public GameObject gameController;
-
+    public GameObject deactivatedObject;
     // public AudioSource[] soundEffects;
 
 
@@ -19,7 +19,7 @@ public class Draggable : MonoBehaviour
     private float cameraHeight, cameraWidth;
     private bool outOfBoundsX, outOfBoundsY = false;
 
-    private bool placed = false;
+    private bool locked = false;
 
     void Awake()
     {
@@ -47,52 +47,49 @@ public class Draggable : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (placed)
+        if (!locked)
         {
-            placed = false;
-            currentShadow.GetComponent<Collider2D>().enabled = true;
+            mousePositionOffset = gameObject.transform.position - GetMouseWorldPosition();
+            anim.Stop();
         }
-
-        mousePositionOffset = gameObject.transform.position - GetMouseWorldPosition();
-        anim.Stop();
     }
 
 
     private void OnMouseDrag()
     {
-        transform.position = GetMouseWorldPosition() + mousePositionOffset;
+        if (!locked)
+        {
+            transform.position = GetMouseWorldPosition() + mousePositionOffset;
+        }
     }
 
 
     private void OnMouseUp()
     {
-        if (currentShadow != null)
+        if (!locked)
         {
-            placed = true;
+            if (currentShadow != null)
+            {
+                locked = true;
 
-            transform.localScale = Vector3.one;
-            transform.position = currentShadow.transform.position;
+                transform.localScale = Vector3.one;
+                transform.position = currentShadow.transform.position;
 
-            currentShadow.GetComponent<Collider2D>().enabled = false;
+                deactivatedObject.SetActive(false);
+                currentShadow.SetActive(false);
 
+                gameController.GetComponent<GameController>().Next(true);
+            }
+
+            outOfBoundsX = transform.position.x > (cameraWidth / 2) || transform.position.x < -(cameraWidth / 2);
+            outOfBoundsY = transform.position.y > (cameraHeight / 2) || transform.position.y < -(cameraHeight / 2);
+
+            if (outOfBoundsX || outOfBoundsY)
+            {
+                transform.position = initialPosition;
+            }
         }
-
-        else
-        {
-            placed = false;
-
-            transform.localScale = Vector3.one;
-            transform.position = initialPosition;
-            anim.Play();
-        }
-
-        outOfBoundsX = transform.position.x > (cameraWidth / 2) || transform.position.x < -(cameraWidth / 2);
-        outOfBoundsY = transform.position.y > (cameraHeight / 2) || transform.position.y < -(cameraHeight / 2);
-
-        if (outOfBoundsX || outOfBoundsY)
-        {
-            transform.position = initialPosition;
-        }
+        
     }
 
 
@@ -109,7 +106,7 @@ public class Draggable : MonoBehaviour
     {
         if (gameObject.tag == col.gameObject.tag && col.gameObject.GetComponent<Draggable>() == null)
         {
-            if (!placed) currentShadow = null;
+            currentShadow = null;
         }
     }
 }
