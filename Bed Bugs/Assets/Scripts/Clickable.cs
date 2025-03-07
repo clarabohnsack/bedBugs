@@ -8,14 +8,14 @@ public class Clickable : MonoBehaviour
 
     public GameObject gameController;
 
-    // public AudioSource[] soundEffects;
+    public AudioSource[] soundEffects;
 
     public Sprite[] textures;
 
     public GameObject activatedObject;
     public GameObject deactivatedObject;
 
-    // public bool soundAtStart = false;
+    public bool soundAtStart = false;
 
     // public bool loopTextures = true;
 
@@ -59,7 +59,7 @@ public class Clickable : MonoBehaviour
             anim.Stop();
 
             sr.sprite = textures[1];
-            // if (!soundAtStart)  soundEffects[0].Play();
+            if (!soundAtStart) soundEffects[0].Play();
             transform.localScale = Vector3.one;
 
             if (activatedObject != null) activatedObject.SetActive(true);
@@ -101,8 +101,8 @@ public class Clickable : MonoBehaviour
             anim.Stop();
 
             sr.color = Color.clear;
-            /*if (!soundAtStart) soundEffects[0].Play();
-            transform.localScale = Vector3.one;
+            if (!soundAtStart) soundEffects[0].Play();
+            /*itransform.localScale = Vector3.one;
 
             if (activatedObject != null) activatedObject.SetActive(true);
             if (deactivatedObject != null) deactivatedObject.SetActive(false);*/
@@ -112,6 +112,9 @@ public class Clickable : MonoBehaviour
         else if (type == 4 && !locked)
         {
             locked = true;
+
+            if (!soundAtStart) soundEffects[currentInteractions].Play();
+
             cannonballs[currentInteractions].bodyType = RigidbodyType2D.Dynamic;
             cannonballs[currentInteractions].AddForce(new Vector2(350f, 250f), ForceMode2D.Force);
             currentInteractions += 1;
@@ -129,6 +132,9 @@ public class Clickable : MonoBehaviour
             sr.sprite = textures[1];
             transform.localScale = Vector3.one;
 
+            if (!soundAtStart) soundEffects[0].Play();
+            if (!soundAtStart) soundEffects[1].Play();
+
             gameController.GetComponent<GameController>().Next(true);
 
 
@@ -142,7 +148,10 @@ public class Clickable : MonoBehaviour
     
     IEnumerator MoveOctopus()
     {
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1.25f);
+
+        soundEffects[currentInteractions + 2].Play();
+        soundEffects[currentInteractions + 5].Play();
 
         Vector3 targetPos = new Vector3(transform.position.x, transform.position.y - 4f, transform.position.z);
         

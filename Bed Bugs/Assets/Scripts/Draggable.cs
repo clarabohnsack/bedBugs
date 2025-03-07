@@ -6,7 +6,7 @@ public class Draggable : MonoBehaviour
 {
     public GameObject gameController;
     public GameObject deactivatedObject;
-    // public AudioSource[] soundEffects;
+    public AudioSource[] soundEffects;
 
 
     private SpriteRenderer sr;
@@ -50,6 +50,7 @@ public class Draggable : MonoBehaviour
         if (!locked)
         {
             mousePositionOffset = gameObject.transform.position - GetMouseWorldPosition();
+            soundEffects[0].Play();
             anim.Stop();
         }
     }
@@ -77,6 +78,8 @@ public class Draggable : MonoBehaviour
 
                 deactivatedObject.SetActive(false);
                 currentShadow.SetActive(false);
+
+                soundEffects[1].Play();
 
                 gameController.GetComponent<GameController>().Next(true);
             }

@@ -134,13 +134,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 729d4679b4c72d5419eb83ddf0868dcd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 1
-  uses: 1
-  hideAfter: 0
-  soundAtStart: 0
   gameController: {fileID: 0}
-  soundEffects: []
-  placedTexture: {fileID: 0}
+  deactivatedObject: {fileID: 0}
+  soundEffects:
+  - {fileID: 2857791799898235731}
+  - {fileID: 2177235101207696993}
 --- !u!50 &6770228964882253682
 Rigidbody2D:
   serializedVersion: 4
@@ -223,7 +221,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 60ab1d4cb5940e646b5822e96d6387f6, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 5ba17794d48274944b2e1f6d976ad860, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.25
   m_Pitch: 1.25

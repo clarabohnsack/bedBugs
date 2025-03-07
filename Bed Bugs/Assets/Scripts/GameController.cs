@@ -28,10 +28,16 @@ public class GameController : MonoBehaviour
     public Animation[] characterAnimations;
 
 
+    [Header("SOUNDS")]
+    public AudioSource[] voiceSounds;
+    public AudioSource[] dreamSounds;
+
+
     void Start()
     {
         nextButton.SetActive(false);
         transition.Play("FadeOut");
+        dreamSounds[0].Play();
         currentDialogue = 0;
         if (dialogueBubble != null) dialogueBubble.sprite = dialogueCharacters[currentDialogue];
         if (characterAnimations.Length != 0) characterAnimations[currentDialogue].Play();
@@ -74,6 +80,8 @@ public class GameController : MonoBehaviour
         dialogueText.text = "";
         nextButton.SetActive(false);
 
+        voiceSounds[(currentDialogue + dialogueList.Length) % voiceSounds.Length].Play();
+
         foreach (char letter in sentence.ToCharArray())
         {
             dialogueText.text += letter;
@@ -87,6 +95,7 @@ public class GameController : MonoBehaviour
     IEnumerator LoadNextScene()
     {
         transition.Play("FadeIn");
+        dreamSounds[1].Play();
         yield return new WaitForSeconds(1.5f);
         SceneManager.LoadScene(nextScene);
     }
